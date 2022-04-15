@@ -1,7 +1,18 @@
 // computerPlay will randomly return either rock, paper, or scissors
 function computerPlay(){
     var randNum = 0;
-    return Math.floor(Math.random() * 3);
+    randNum = Math.floor(Math.random() * 3);
+    switch (randNum){
+        case 0: console.log("COMPUTER: ROCK!");
+            break;
+        case 1: console.log("COMPUTER: PAPER!");
+            break;
+        case 2: console.log("COMPUTER: SCISSORS!");
+            break;
+        default: console.log("COMPUTER ERROR!");
+    }
+    return randNum;
+    
 }
 
 //This function will play a single round of Rock Paper Scissors and declare the winner
@@ -12,6 +23,7 @@ function playRound(playerSelection, computerSelection){
     switch (playerSelection.toUpperCase()){
         case "ROCK":
             playerInput=0;
+            console.log("PLAYER: ROCK!");
             if(computerSelection === 2){
                 winner = "PLAYER WINS!";
             }else if(computerSelection === 1){
@@ -22,6 +34,7 @@ function playRound(playerSelection, computerSelection){
             break;
         case "PAPER":
             playerInput=1;
+            console.log("PLAYER: PAPER!");
             if(computerSelection === 0){
                 winner = "PLAYER WINS!";
             }else if(computerSelection === 2){
@@ -32,6 +45,7 @@ function playRound(playerSelection, computerSelection){
             break;
         case "SCISSORS":
             playerInput=2;
+            console.log("PLAYER: SCISSORS!");
             if(computerSelection === 1){
                 winner = "PLAYER WINS!";
             }else if(computerSelection === 0){
@@ -46,8 +60,12 @@ function playRound(playerSelection, computerSelection){
     return winner;
 }
 
-const playerSelection = "paper";
-const computerSelection = computerPlay();
+function game(){  
+    for(let i=0;i<5;i++){
+        const playerSelection = prompt();
+        var computerSelection = computerPlay();
+        console.log(playRound (playerSelection, computerSelection));
+    }
+}
 
-console.log(playerSelection, computerSelection);
-console.log(playRound (playerSelection, computerSelection));
+game();
