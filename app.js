@@ -61,11 +61,35 @@ function playRound(playerSelection, computerSelection){
 }
 
 function game(){  
-    for(let i=0;i<5;i++){
-        const playerSelection = prompt();
-        var computerSelection = computerPlay();
-        console.log(playRound (playerSelection, computerSelection));
-    }
+        var playerSelection;
+        var computerSelection;
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button)=>{
+            button.addEventListener('click', () =>{
+                console.log(button.id);
+                if(button.id){
+                    computerSelection = computerPlay();
+                    switch (button.id){
+                        case "0": 
+                            playerSelection ="rock";
+                            console.log(playerSelection);
+                            console.log(playRound (playerSelection, computerSelection));
+                            break;
+                        case "1": 
+                            playerSelection ="paper";
+                            console.log(playerSelection);
+                            console.log(playRound (playerSelection, computerSelection));
+                            break;
+                        case "2": 
+                            playerSelection ="scissors";
+                            console.log(playerSelection);
+                            console.log(playRound (playerSelection, computerSelection));
+                            break;
+                    default:console.log("Error!");
+                    }       
+            }
+            });
+        });
 }
 
 game();
