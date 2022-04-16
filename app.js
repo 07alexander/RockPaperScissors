@@ -1,3 +1,6 @@
+var playerScore = 0;
+var computerScore = 0;
+
 // computerPlay will randomly return either rock, paper, or scissors
 function computerPlay(){
     var randNum = 0;
@@ -26,6 +29,7 @@ function playRound(playerSelection, computerSelection){
             console.log("PLAYER: ROCK!");
             if(computerSelection === 2){
                 winner = "PLAYER WINS!";
+                playerScore++;
             }else if(computerSelection === 1){
                 winner = "COMPUTER WINS!";
             }else{
@@ -37,6 +41,7 @@ function playRound(playerSelection, computerSelection){
             console.log("PLAYER: PAPER!");
             if(computerSelection === 0){
                 winner = "PLAYER WINS!";
+                playerScore++;
             }else if(computerSelection === 2){
                 winner = "COMPUTER WINS!";
             }else{
@@ -48,6 +53,7 @@ function playRound(playerSelection, computerSelection){
             console.log("PLAYER: SCISSORS!");
             if(computerSelection === 1){
                 winner = "PLAYER WINS!";
+                playerScore++;
             }else if(computerSelection === 0){
                 winner = "COMPUTER WINS!";
             }else{
@@ -63,33 +69,49 @@ function playRound(playerSelection, computerSelection){
 function game(){  
         var playerSelection;
         var computerSelection;
+        var computerWord;
         const buttons = document.querySelectorAll('button');
+        const container = document.querySelector(".container");
+        const content = document.createElement('div');
+        content.classList.add('content');
+        content.setAttribute('style', 'white-space: pre;');
         buttons.forEach((button)=>{
             button.addEventListener('click', () =>{
-                console.log(button.id);
+                content.textContent = '';
+                container.appendChild(content);
+                computerSelection = computerPlay();
                 if(button.id){
-                    computerSelection = computerPlay();
+                    for(let i=0;i<3;i++){
+                        if(computerSelection === 0) computerWord = "Rock!";
+                        else if (computerSelection === 1) computerWord = "Paper!";
+                        else (computerWord = "Scissors!");
+                    }
+                    console.log(computerSelection);
                     switch (button.id){
                         case "0": 
                             playerSelection ="rock";
-                            console.log(playerSelection);
-                            console.log(playRound (playerSelection, computerSelection));
+                            content.textContent = "Player: Rock!\r\n";
+                            container.textContent = "Computer: " + computerWord;
+                            content.textContent += playRound (playerSelection, computerSelection);
+                            container.appendChild(content);
+                            console.log("PLAYER SCORE: " + playerScore);
                             break;
                         case "1": 
                             playerSelection ="paper";
-                            console.log(playerSelection);
-                            console.log(playRound (playerSelection, computerSelection));
+                            content.textContent = playRound (playerSelection, computerSelection);
+                            container.appendChild(content);
                             break;
                         case "2": 
                             playerSelection ="scissors";
-                            console.log(playerSelection);
-                            console.log(playRound (playerSelection, computerSelection));
+                            content.textContent = playRound (playerSelection, computerSelection);
+                            container.appendChild(content);
                             break;
                     default:console.log("Error!");
                     }       
             }
             });
         });
+
 }
 
 game();
