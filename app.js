@@ -32,6 +32,7 @@ function playRound(playerSelection, computerSelection){
                 playerScore++;
             }else if(computerSelection === 1){
                 winner = "COMPUTER WINS!";
+                computerScore++;
             }else{
                 winner = "TIE GAME!";
             }
@@ -44,6 +45,7 @@ function playRound(playerSelection, computerSelection){
                 playerScore++;
             }else if(computerSelection === 2){
                 winner = "COMPUTER WINS!";
+                computerScore++;
             }else{
                 winner = "TIE GAME!";
             }
@@ -56,6 +58,7 @@ function playRound(playerSelection, computerSelection){
                 playerScore++;
             }else if(computerSelection === 0){
                 winner = "COMPUTER WINS!";
+                computerScore++;
             }else{
                 winner = "TIE GAME!";
             }
@@ -93,20 +96,31 @@ function game(){
                             content.textContent = "Player: Rock!\r\n";
                             container.textContent = "Computer: " + computerWord;
                             content.textContent += playRound (playerSelection, computerSelection);
+                            content.textContent += "\r\nPLAYER SCORE: " + playerScore + " " + "COMPUTER SCORE: " + computerScore;
                             container.appendChild(content);
-                            console.log("PLAYER SCORE: " + playerScore);
                             break;
                         case "1": 
                             playerSelection ="paper";
-                            content.textContent = playRound (playerSelection, computerSelection);
+                            content.textContent = "Player: Paper!\r\n";
+                            container.textContent = "Computer: " + computerWord;
+                            content.textContent += playRound (playerSelection, computerSelection);
+                            content.textContent += "\r\nPLAYER SCORE: " + playerScore + " " + "COMPUTER SCORE: " + computerScore;
                             container.appendChild(content);
                             break;
                         case "2": 
                             playerSelection ="scissors";
-                            content.textContent = playRound (playerSelection, computerSelection);
+                            content.textContent = "Player: Scissors!\r\n";
+                            container.textContent = "Computer: " + computerWord;
+                            content.textContent += playRound (playerSelection, computerSelection);
+                            content.textContent += "\r\nPLAYER SCORE: " + playerScore + " " + "COMPUTER SCORE: " + computerScore;
                             container.appendChild(content);
                             break;
                     default:console.log("Error!");
+                    }
+                    if(playerScore > 4){
+                        alert("You win!");
+                    }else if(computerScore>4){
+                        alert("You lose!");
                     }       
             }
             });
